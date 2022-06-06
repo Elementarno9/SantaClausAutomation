@@ -10,6 +10,11 @@ SET(CPP_FILES
         objects/little_pony.cpp
         objects/teddy.cpp
 
+        gifts/wrap.cpp
+        gifts/box.cpp
+        gifts/gift_paper.cpp
+
+        persons/elf.cpp
         )
 
 add_executable(tests tests.cpp ${CPP_FILES})
