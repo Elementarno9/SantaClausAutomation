@@ -132,3 +132,12 @@ XMLObject* XMLObject::from_string(const std::string& xml) {
 
     return object;
 }
+
+std::string XMLObject::get_attribute(const std::string& attr) const {
+    for (size_t i = 0; i < attributes_count; i++) {
+        if (attribute_names[i] == attr) {
+            return attribute_values[i];
+        }
+    }
+    return std::string();
+}

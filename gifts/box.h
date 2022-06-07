@@ -4,6 +4,8 @@
 
 class Box : public Wrap {
 public:
+    Box() { name = "Box"; }
+
     bool wrapMeThat(Object* object) override;
 
     Object* openMe() override;

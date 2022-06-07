@@ -24,5 +24,7 @@ public:
 
     static XMLObject* from_string(const std::string& xml);
     std::string to_string() const;
+
+    std::string get_attribute(const std::string& attr) const;
     friend std::ostream& operator<<(std::ostream& s, const XMLObject& obj);
 };
