@@ -1,5 +1,6 @@
 #include "box.h"
 
+
 bool Box::wrapMeThat(Object* object) {
     if (!is_opened) {
         std::cerr << "Box have to be opened before wrapping." << std::endl;
@@ -24,6 +25,6 @@ void Box::print(std::ostream& s) const {
 XMLObject* Box::to_xml() const {
     return new XMLObject("Box",
                          nullptr, nullptr, 0,
-                         inside != nullptr ? new XMLObject* []{inside->to_xml()} : nullptr,
+                         inside != nullptr ? new XMLObject* [1]{inside->to_xml()} : nullptr,
                          inside != nullptr ? 1 : 0);
 }

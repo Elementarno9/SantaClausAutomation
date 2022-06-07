@@ -6,7 +6,7 @@ void Teddy::print(std::ostream& s) const {
 
 XMLObject* Teddy::to_xml() const {
     return new XMLObject("Teddy",
-                         new std::string[]{"name"},
-                         new std::string[]{name},
+                         new std::string[1] {"name"},
+                         new std::string[1] {name},
                          1);
 }

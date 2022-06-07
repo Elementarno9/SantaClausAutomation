@@ -1,8 +1,20 @@
+#include <arpa/inet.h>
+#include <sys/socket.h>
+
 #include "papa_xmas_conveyor_belt.h"
 #include "../gifts/box.h"
 #include "../gifts/gift_paper.h"
 
-PapaXmasConveyorBelt::PapaXmasConveyorBelt() : wrap(nullptr) {}
+
+PapaXmasConveyorBelt::PapaXmasConveyorBelt(const std::string& warp_ip, int warp_port) : wrap(nullptr) {
+    sockfd = socket(AF_INET, SOCK_DGRAM, 0);
+
+    warp_addr.sin_family = AF_INET;
+    warp_addr.sin_port = htons(warp_port);
+    inet_aton(warp_ip.c_str(), &warp_addr.sin_addr);
+
+    std::cout << "[CONVEYOR BELT] Waiting Santa at " << warp_ip << ":" << warp_port << std::endl;
+}
 
 PapaXmasConveyorBelt::~PapaXmasConveyorBelt() {
     delete wrap;
@@ -39,8 +51,14 @@ bool PapaXmasConveyorBelt::push_button(ConveyorButton button) {
                 std::cerr << "Conveyor belt doesn't contain a wrap!";
                 return false;
             }
-            std::cout << "[CONVEYOR BELT]: send " << *wrap->to_xml() << "." << std::endl;
+
+            auto* xmlObject = wrap->to_xml();
+            auto data = xmlObject->to_string();
+            int sendOk = sendto(sockfd, data.c_str(), data.size() + 1, 0, (sockaddr*) &warp_addr, sizeof(warp_addr));
+
+            std::cout << "[CONVEYOR BELT]: send (" << sendOk << ") " << data << "." << std::endl;
             wrap = nullptr;
+            delete xmlObject;
             break;
     }
 

@@ -7,6 +7,7 @@
 #include "../gifts/box.h"
 #include "../gifts/gift_paper.h"
 
+
 Object* SantaClaus::deserialize(XMLObject* xmlObject) {
     bool is_wrap = false;
     Object* obj;
@@ -26,7 +27,7 @@ Object* SantaClaus::deserialize(XMLObject* xmlObject) {
     }
 
     if (is_wrap && xmlObject->children_count == 1) {
-        Wrap* wrap = (Wrap*)obj;
+        Wrap* wrap = (Wrap*) obj;
         wrap->openMe();
         wrap->wrapMeThat(deserialize(xmlObject->children[0]));
         wrap->closeMe();
@@ -35,7 +36,7 @@ Object* SantaClaus::deserialize(XMLObject* xmlObject) {
     return obj;
 }
 
-void SantaClaus::handle_gift(const std::string& xml_filepath) {
+void SantaClaus::handle_gift_from_file(const std::string& xml_filepath) {
     std::ifstream file(xml_filepath);
     if (!file) {
         say("Something is wrong...");
@@ -45,16 +46,30 @@ void SantaClaus::handle_gift(const std::string& xml_filepath) {
     std::stringstream ss;
     ss << file.rdbuf();
 
-    auto xmlObject = XMLObject::from_string(ss.str());
-    Wrap* gift = (Wrap*)deserialize(xmlObject);
+    handle_gift(ss.str());
+}
+
+void SantaClaus::say(const std::string& text) const {
+    std::cout << "Santa says `" << text << "`." << std::endl;
+}
+
+void SantaClaus::work(WarpMachine* warp_machine) {
+    say("Ho ho ho... Happy New Year!");
+    while (true) {
+        handle_gift(warp_machine->receive());
+    }
+}
+
+void SantaClaus::handle_gift(const std::string& xml) {
+    auto xmlObject = XMLObject::from_string(xml);
+    Wrap* gift = (Wrap*) deserialize(xmlObject);
 
     say("Quality controle!");
     Object* toy = gift->openMe();
     say("Ho ho ho! There is " + toy->get_name() + " inside " + gift->get_name());
     gift->wrapMeThat(toy);
     gift->closeMe();
-}
 
-void SantaClaus::say(const std::string& text) const {
-    std::cout << "Santa says `" << text << "`." << std::endl;
+    delete xmlObject;
+    delete gift;
 }
