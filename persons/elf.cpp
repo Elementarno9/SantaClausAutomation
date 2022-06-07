@@ -41,3 +41,58 @@ bool Elf::wrap_object(Object* object) const {
     std::cout << "Result: " << *wrap << std::endl;
     return true;
 }
+
+bool Elf::take(ITable* table) {
+    if (wrap == nullptr) {
+        say("I ne'd a wr'ap!");
+        return false;
+    }
+
+    auto overview = table->look();
+    int count = 0;
+    while (!overview[count].empty()) count++;
+
+    if (count == 0) {
+        say("Em'ty tabl'!");
+        return false;
+    }
+
+    wrap->openMe();
+    wrap_object(table->take(std::rand() % count));
+    wrap->closeMe();
+
+    return true;
+}
+
+bool Elf::take(IConveyorBelt* belt) {
+    if (wrap != nullptr) {
+        say("I have a wr'ap!");
+        return false;
+    }
+
+    wrap = belt->take();
+    if (wrap == nullptr) {
+        say("puuuuuuush!");
+        belt->push_button(IN);
+        wrap = belt->take();
+    }
+    return true;
+}
+
+bool Elf::send(IConveyorBelt* belt) {
+    if (wrap == nullptr) {
+        say("I ne'd a wr'ap!");
+        return false;
+    }
+
+    auto* gift = put();
+    if (!belt->put(gift)) {
+        say("Oi oi oi!");
+        take(gift);
+        return false;
+    }
+
+    belt->push_button(OUT);
+    say("yaaaaaa!");
+    return true;
+}

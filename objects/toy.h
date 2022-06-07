@@ -6,8 +6,8 @@ class Toy : public Object {
 protected:
     std::string scream;
 public:
-    Toy(std::string name)
+    Toy(const std::string& name)
             : Object(name) {}
 
-    virtual void isTaken();
+    void isTaken() const;
 };

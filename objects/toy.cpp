@@ -1,5 +1,5 @@
 #include "toy.h"
 
-void Toy::isTaken() {
+void Toy::isTaken() const {
     std::cout << "The " << *this << " screams `" << scream << "`!" << std::endl;
 }

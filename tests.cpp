@@ -3,6 +3,8 @@
 #include "gifts/box.h"
 #include "gifts/gift_paper.h"
 #include "persons/elf.h"
+#include "workplace/papa_xmas_table.h"
+#include "workplace/papa_xmas_conveyor_belt.h"
 
 Object** MyUnitTests()
 {
@@ -33,9 +35,45 @@ Object* MyUnitTests(Object** objects)
     return elf.put();
 }
 
+Object** NextUnitTest(ITable* table, IConveyorBelt* belt)
+{
+    Elf elf("Bob");
+
+    elf.take(belt);
+    while (elf.take(table))
+    {
+        elf.send(belt);
+        elf.take(belt);
+    }
+
+    return nullptr;
+}
+
+ITable* createTable()
+{
+    auto* table = new PapaXmasTable(10);
+
+    table->put(new Teddy("Cuddles"));
+    table->put(new LittlePony("Unicorn"));
+
+    return table;
+}
+
+IConveyorBelt* createConveyorBelt()
+{
+    auto* belt = new PapaXmasConveyorBelt();
+
+    return belt;
+}
+
+void print_test(int i) {
+    std::cout << std::endl << "========= test #" << i << " =========" << std::endl;
+}
+
 int main()
 {
     // 1st unit test
+    print_test(1);
     auto toys = MyUnitTests();
 
     delete toys[0];
@@ -43,6 +81,7 @@ int main()
     delete[] toys;
 
     // 2nd unit test
+    print_test(2);
     auto gift = MyUnitTests(new Object*[] { new Teddy("Cuddles"), new Box(), new GiftPaper()});
 
     auto box = ((Wrap*)gift)->openMe();
@@ -51,6 +90,10 @@ int main()
     delete inside;
     delete box;
     delete gift;
+
+    // 3rd unit test
+    print_test(3);
+    NextUnitTest(createTable(), createConveyorBelt());
 
     return 0;
 }

@@ -4,7 +4,7 @@
 
 class Teddy : public Toy {
 public:
-    Teddy(std::string name)
+    Teddy(const std::string& name)
             : Toy(name) {
         scream = "gra hu";
     }

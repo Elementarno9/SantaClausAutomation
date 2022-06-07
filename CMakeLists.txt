@@ -15,6 +15,11 @@ SET(CPP_FILES
         gifts/gift_paper.cpp
 
         persons/elf.cpp
+
+        workplace/i_table.cpp
+        workplace/i_conveyor_belt.cpp
+        workplace/papa_xmas_table.cpp
+        workplace/papa_xmas_conveyor_belt.cpp
         )
 
 add_executable(tests tests.cpp ${CPP_FILES})
