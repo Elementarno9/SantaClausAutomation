@@ -1,9 +1,10 @@
 #pragma once
+
 #include <netinet/in.h>
 #include <string>
 
-class WarpMachine
-{
+
+class WarpMachine {
   private:
     int sockfd;
     sockaddr_in addr;

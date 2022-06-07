@@ -6,12 +6,13 @@
 #include "../gifts/wrap.h"
 #include "constants.h"
 
+
 class PapaXmasConveyorBelt : public IConveyorBelt {
-private:
+  private:
     Wrap* wrap;
     int sockfd;
     sockaddr_in warp_addr;
-public:
+  public:
     explicit PapaXmasConveyorBelt(const std::string& warp_ip = IP_DEFAULT, int warp_port = PORT_DEFAULT);
 
     ~PapaXmasConveyorBelt() override;

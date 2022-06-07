@@ -1,6 +1,7 @@
 #include <iostream>
 #include "wrap.h"
 
+
 bool Wrap::wrapMeThat(Object* object) {
     if (inside != nullptr) {
         std::cerr << "Cannot wrap because it already contains object." << std::endl;

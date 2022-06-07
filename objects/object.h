@@ -5,16 +5,18 @@
 
 #include "../xml/xml_object.h"
 
+
 class Object {
-protected:
+  protected:
     std::string name;
-public:
+  public:
     explicit Object(const std::string& name = "")
             : name(name) {}
 
     virtual ~Object() = default;
 
     const std::string& get_name() const;
+
     virtual void print(std::ostream& s) const = 0;
 
     virtual XMLObject* to_xml() const = 0;

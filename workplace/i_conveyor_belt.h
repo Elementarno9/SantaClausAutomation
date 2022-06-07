@@ -2,13 +2,14 @@
 
 #include "../gifts/wrap.h"
 
+
 enum ConveyorButton {
     IN,
     OUT
 };
 
 class IConveyorBelt {
-public:
+  public:
     virtual ~IConveyorBelt() = default;
 
     virtual bool put(Wrap* object) = 0;

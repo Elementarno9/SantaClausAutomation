@@ -2,8 +2,8 @@
 
 #include "papa_xmas_table.h"
 
-class TableRand : public PapaXmasTable
-{
-public:
+
+class TableRand : public PapaXmasTable {
+  public:
     explicit TableRand(int max_count);
 };

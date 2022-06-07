@@ -2,11 +2,12 @@
 
 #include "../objects/object.h"
 
+
 class Wrap : public Object {
-protected:
+  protected:
     Object* inside;
     bool is_opened = false;
-public:
+  public:
     Wrap() : inside(nullptr) {}
 
     virtual bool wrapMeThat(Object* object);

@@ -2,12 +2,13 @@
 
 #include "i_table.h"
 
+
 class PapaXmasTable : public ITable {
-protected:
+  protected:
     Object** container;
     int count = 0;
     int max_count = 0;
-public:
+  public:
     explicit PapaXmasTable(int max_count);
 
     ~PapaXmasTable() override;

@@ -1,5 +1,6 @@
 #include "papa_xmas_elf.h"
 
+
 void PapaXmasElf::say(const std::string& text) const {
     std::cout << "Elf " << name << " says `" << text << "`." << std::endl;
 }
@@ -101,8 +102,7 @@ void PapaXmasElf::work(ITable* table, IConveyorBelt* belt) {
     say("Sta't wo'kin!");
 
     take(belt);
-    while (take(table))
-    {
+    while (take(table)) {
         send(belt);
         take(belt);
     }

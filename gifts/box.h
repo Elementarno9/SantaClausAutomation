@@ -2,8 +2,9 @@
 
 #include "wrap.h"
 
+
 class Box : public Wrap {
-public:
+  public:
     Box() { name = "Box"; }
 
     bool wrapMeThat(Object* object) override;

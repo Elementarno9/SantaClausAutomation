@@ -2,6 +2,7 @@
 #include "../objects/teddy.h"
 #include "../objects/little_pony.h"
 
+
 TableRand::TableRand(int max_count) : PapaXmasTable(max_count) {
     for (int i = 0; i < max_count; i++) {
         Object* obj;

@@ -75,7 +75,7 @@ int main()
 
     // 2nd unit test
     print_test(2);
-    auto gift = MyUnitTests(new Object*[] { new Teddy("Cuddles"), new Box(), new GiftPaper()});
+    auto gift = MyUnitTests(new Object*[3] { new Teddy("Cuddles"), new Box(), new GiftPaper()});
 
     auto box = ((Wrap*)gift)->openMe();
     auto inside = ((Wrap*)box)->openMe();

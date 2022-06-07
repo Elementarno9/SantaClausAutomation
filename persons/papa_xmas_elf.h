@@ -2,8 +2,9 @@
 
 #include "i_elf.h"
 
+
 class PapaXmasElf : public IElf {
-public:
+  public:
     explicit PapaXmasElf(const std::string& name) : IElf(name) {}
 
     void say(const std::string& text) const override;

@@ -1,6 +1,7 @@
 #include "xml_object.h"
 #include <sstream>
 
+
 const size_t kCacheMaxSize = 10;
 
 XMLObject::~XMLObject() {
@@ -77,8 +78,7 @@ XMLObject* XMLObject::from_string(const std::string& xml) {
         object->attributes_count = attributes_count;
 
         // Copying
-        for (size_t i = 0; i < attributes_count; i++)
-        {
+        for (size_t i = 0; i < attributes_count; i++) {
             object->attribute_names[i] = attribute_names[i];
             object->attribute_values[i] = attribute_values[i];
         }
@@ -88,9 +88,9 @@ XMLObject* XMLObject::from_string(const std::string& xml) {
     } else name = xml.substr(1, start_close_pos - 1);
 
     if (start_close_pos != end_open_pos - 1) { // Has children
-        int level = 0, start = 0, end = 0;
+        int level = 0, start = 0;
         bool final = false, close_tag = false;
-        auto** children = new XMLObject*[kCacheMaxSize];
+        auto** children = new XMLObject* [kCacheMaxSize];
         int children_count = 0;
 
         for (size_t i = start_close_pos + 1; i < end_open_pos; i++) {
@@ -105,11 +105,9 @@ XMLObject* XMLObject::from_string(const std::string& xml) {
                         start = i;
                     }
                 }
-            } else if (xml[i] == '>')
-            {
+            } else if (xml[i] == '>') {
                 if (final) {
-                    end = i;
-                    children[children_count++] = XMLObject::from_string(xml.substr(start, end - start + 1));
+                    children[children_count++] = XMLObject::from_string(xml.substr(start, i - start + 1));
                     final = false;
                     close_tag = false;
                 } else if (close_tag) {
@@ -118,7 +116,7 @@ XMLObject* XMLObject::from_string(const std::string& xml) {
             }
         }
 
-        object->children = new XMLObject*[children_count];
+        object->children = new XMLObject* [children_count];
         object->children_count = children_count;
 
         for (size_t i = 0; i < children_count; i++) {

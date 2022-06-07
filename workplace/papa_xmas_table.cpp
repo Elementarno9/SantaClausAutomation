@@ -1,5 +1,6 @@
 #include "papa_xmas_table.h"
 
+
 Object* PapaXmasTable::take(int id) {
     if (count == 0 || id < -1 || id >= count) {
         std::cerr << "Invalid id for an object on table!";

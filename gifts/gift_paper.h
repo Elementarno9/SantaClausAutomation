@@ -2,8 +2,9 @@
 
 #include "wrap.h"
 
+
 class GiftPaper : public Wrap {
-public:
+  public:
     GiftPaper() { name = "Gift paper"; }
 
     void print(std::ostream& s) const override;

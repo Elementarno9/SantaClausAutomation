@@ -2,10 +2,11 @@
 
 #include "object.h"
 
+
 class Toy : public Object {
-protected:
+  protected:
     std::string scream;
-public:
+  public:
     Toy(const std::string& name)
             : Object(name) {}
 

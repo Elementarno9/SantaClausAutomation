@@ -2,13 +2,15 @@
 
 #include "toy.h"
 
+
 class Teddy : public Toy {
-public:
+  public:
     Teddy(const std::string& name)
             : Toy(name) {
         scream = "gra hu";
     }
 
     void print(std::ostream& s) const override;
+
     XMLObject* to_xml() const override;
 };

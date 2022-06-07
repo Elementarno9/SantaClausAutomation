@@ -2,9 +2,11 @@
 
 #include "../objects/object.h"
 
+
 class ITable {
-public:
+  public:
     virtual Object* take(int id) = 0;
+
     virtual ~ITable() = default;
 
     virtual bool put(Object* object) = 0;

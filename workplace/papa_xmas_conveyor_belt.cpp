@@ -43,7 +43,8 @@ bool PapaXmasConveyorBelt::push_button(ConveyorButton button) {
                 return false;
             }
 
-            wrap = std::rand() % 2 == 0 ? (Wrap*) new Box() : (Wrap*) new GiftPaper();
+            wrap = std::rand() % 2 == 0 ? (Wrap * ) new Box() : (Wrap * )
+            new GiftPaper();
             break;
         case OUT:
             // Send to Santa

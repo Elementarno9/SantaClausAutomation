@@ -5,13 +5,14 @@
 #include "../workplace/i_table.h"
 #include "../workplace/i_conveyor_belt.h"
 
-class IElf
-{
-protected:
+
+class IElf {
+  protected:
     std::string name;
     Wrap* wrap = nullptr;
-public:
+  public:
     explicit IElf(const std::string& name) : name(name) {};
+
     virtual ~IElf() {
         delete wrap;
     }
