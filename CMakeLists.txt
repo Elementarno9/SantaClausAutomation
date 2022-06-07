@@ -14,7 +14,8 @@ SET(CPP_FILES
         gifts/box.cpp
         gifts/gift_paper.cpp
 
-        persons/elf.cpp
+        persons/i_elf.cpp
+        persons/papa_xmas_elf.cpp
 
         workplace/i_table.cpp
         workplace/i_conveyor_belt.cpp

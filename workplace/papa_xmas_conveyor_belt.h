@@ -9,7 +9,7 @@ private:
 public:
     PapaXmasConveyorBelt();
 
-    ~PapaXmasConveyorBelt();
+    ~PapaXmasConveyorBelt() override;
 
     bool put(Wrap* object) override;
 

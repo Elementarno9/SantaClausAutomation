@@ -10,7 +10,7 @@ private:
 public:
     explicit PapaXmasTable(int max_count);
 
-    ~PapaXmasTable();
+    ~PapaXmasTable() override;
 
     Object* take(int id = -1) override;
 

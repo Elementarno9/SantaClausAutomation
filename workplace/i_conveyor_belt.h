@@ -9,6 +9,8 @@ enum ConveyorButton {
 
 class IConveyorBelt {
 public:
+    virtual ~IConveyorBelt() = default;
+
     virtual bool put(Wrap* object) = 0;
 
     virtual Wrap* take() = 0;

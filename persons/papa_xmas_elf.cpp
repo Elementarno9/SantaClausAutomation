@@ -1,10 +1,10 @@
-#include "elf.h"
+#include "papa_xmas_elf.h"
 
-void Elf::say(const std::string& text) const {
+void PapaXmasElf::say(const std::string& text) const {
     std::cout << "Elf " << name << " says `" << text << "`." << std::endl;
 }
 
-bool Elf::take(Wrap* object) {
+bool PapaXmasElf::take(Wrap* object) {
     if (wrap != nullptr) {
         std::cerr << "Must clear hands before take a wrap.";
         say("Ooops!");
@@ -15,13 +15,13 @@ bool Elf::take(Wrap* object) {
     return true;
 }
 
-Wrap* Elf::put() {
+Wrap* PapaXmasElf::put() {
     Wrap* result = wrap;
     wrap = nullptr;
     return result;
 }
 
-Object* Elf::open_wrap() const {
+Object* PapaXmasElf::open_wrap() const {
     if (wrap == nullptr) {
         std::cerr << "There is no wrap!";
         say("Ooops!");
@@ -30,7 +30,7 @@ Object* Elf::open_wrap() const {
     return wrap->openMe();
 }
 
-bool Elf::wrap_object(Object* object) const {
+bool PapaXmasElf::wrap_object(Object* object) const {
     if (!wrap->wrapMeThat(object)) {
         say("Ooooops!");
         return false;
@@ -42,7 +42,7 @@ bool Elf::wrap_object(Object* object) const {
     return true;
 }
 
-bool Elf::take(ITable* table) {
+bool PapaXmasElf::take(ITable* table) {
     if (wrap == nullptr) {
         say("I ne'd a wr'ap!");
         return false;
@@ -64,7 +64,7 @@ bool Elf::take(ITable* table) {
     return true;
 }
 
-bool Elf::take(IConveyorBelt* belt) {
+bool PapaXmasElf::take(IConveyorBelt* belt) {
     if (wrap != nullptr) {
         say("I have a wr'ap!");
         return false;
@@ -79,7 +79,7 @@ bool Elf::take(IConveyorBelt* belt) {
     return true;
 }
 
-bool Elf::send(IConveyorBelt* belt) {
+bool PapaXmasElf::send(IConveyorBelt* belt) {
     if (wrap == nullptr) {
         say("I ne'd a wr'ap!");
         return false;
@@ -95,4 +95,17 @@ bool Elf::send(IConveyorBelt* belt) {
     belt->push_button(OUT);
     say("yaaaaaa!");
     return true;
+}
+
+void PapaXmasElf::work(ITable* table, IConveyorBelt* belt) {
+    say("Sta't wo'kin!");
+
+    take(belt);
+    while (take(table))
+    {
+        send(belt);
+        take(belt);
+    }
+
+    say("Goo s'eeeep");
 }

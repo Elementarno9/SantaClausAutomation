@@ -2,7 +2,7 @@
 #include "objects/little_pony.h"
 #include "gifts/box.h"
 #include "gifts/gift_paper.h"
-#include "persons/elf.h"
+#include "persons/papa_xmas_elf.h"
 #include "workplace/papa_xmas_table.h"
 #include "workplace/papa_xmas_conveyor_belt.h"
 
@@ -22,7 +22,7 @@ Object** MyUnitTests()
 
 Object* MyUnitTests(Object** objects)
 {
-    Elf elf("Tobby");
+    PapaXmasElf elf("Tobby");
 
     elf.take((Wrap*)objects[1]);
     elf.wrap_object(objects[0]); // Fails
@@ -35,18 +35,14 @@ Object* MyUnitTests(Object** objects)
     return elf.put();
 }
 
-Object** NextUnitTest(ITable* table, IConveyorBelt* belt)
+void NextUnitTest(ITable* table, IConveyorBelt* belt)
 {
-    Elf elf("Bob");
+    PapaXmasElf elf("Bob");
 
-    elf.take(belt);
-    while (elf.take(table))
-    {
-        elf.send(belt);
-        elf.take(belt);
-    }
+    elf.work(table, belt);
 
-    return nullptr;
+    delete table;
+    delete belt;
 }
 
 ITable* createTable()
