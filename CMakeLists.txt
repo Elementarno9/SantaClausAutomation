@@ -21,6 +21,10 @@ SET(CPP_FILES
         workplace/i_conveyor_belt.cpp
         workplace/papa_xmas_table.cpp
         workplace/papa_xmas_conveyor_belt.cpp
+        workplace/table_rand.cpp
+        workplace/conveyor_belt_rand.cpp
+
+        xml/xml_object.cpp
         )
 
 add_executable(tests tests.cpp ${CPP_FILES})

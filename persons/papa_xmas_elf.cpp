@@ -107,5 +107,5 @@ void PapaXmasElf::work(ITable* table, IConveyorBelt* belt) {
         take(belt);
     }
 
-    say("Goo s'eeeep");
+    say("o'pa ere 's somin ' wron ' in da box !");
 }

@@ -9,4 +9,6 @@ public:
     Object* openMe() override;
 
     void print(std::ostream& s) const override;
+
+    XMLObject* to_xml() const override;
 };

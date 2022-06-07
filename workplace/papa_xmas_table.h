@@ -3,7 +3,7 @@
 #include "i_table.h"
 
 class PapaXmasTable : public ITable {
-private:
+protected:
     Object** container;
     int count = 0;
     int max_count = 0;

@@ -20,3 +20,10 @@ void Box::print(std::ostream& s) const {
         s << "Empty box";
     }
 }
+
+XMLObject* Box::to_xml() const {
+    return new XMLObject("Box",
+                         nullptr, nullptr, 0,
+                         inside != nullptr ? new XMLObject* []{inside->to_xml()} : nullptr,
+                         inside != nullptr ? 1 : 0);
+}

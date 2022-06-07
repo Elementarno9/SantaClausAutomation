@@ -39,7 +39,7 @@ bool PapaXmasConveyorBelt::push_button(ConveyorButton button) {
                 std::cerr << "Conveyor belt doesn't contain a wrap!";
                 return false;
             }
-            std::cout << "[CONVEYOR BELT]: send " << *wrap << "." << std::endl;
+            std::cout << "[CONVEYOR BELT]: send " << *wrap->to_xml() << "." << std::endl;
             wrap = nullptr;
             break;
     }

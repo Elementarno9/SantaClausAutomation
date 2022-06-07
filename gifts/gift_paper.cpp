@@ -7,3 +7,10 @@ void GiftPaper::print(std::ostream& s) const {
         s << "Empty gift paper";
     }
 }
+
+XMLObject* GiftPaper::to_xml() const {
+    return new XMLObject("GiftPaper",
+                         nullptr, nullptr, 0,
+                         inside != nullptr ? new XMLObject* []{inside->to_xml()} : nullptr,
+                         inside != nullptr ? 1 : 0);
+}

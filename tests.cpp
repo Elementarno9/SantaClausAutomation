@@ -3,8 +3,8 @@
 #include "gifts/box.h"
 #include "gifts/gift_paper.h"
 #include "persons/papa_xmas_elf.h"
-#include "workplace/papa_xmas_table.h"
-#include "workplace/papa_xmas_conveyor_belt.h"
+#include "workplace/table_rand.h"
+#include "workplace/conveyor_belt_rand.h"
 
 Object** MyUnitTests()
 {
@@ -47,17 +47,14 @@ void NextUnitTest(ITable* table, IConveyorBelt* belt)
 
 ITable* createTable()
 {
-    auto* table = new PapaXmasTable(10);
-
-    table->put(new Teddy("Cuddles"));
-    table->put(new LittlePony("Unicorn"));
+    auto* table = new TableRand(10);
 
     return table;
 }
 
 IConveyorBelt* createConveyorBelt()
 {
-    auto* belt = new PapaXmasConveyorBelt();
+    auto* belt = new ConveyorBeltRand();
 
     return belt;
 }
