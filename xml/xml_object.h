@@ -22,6 +22,7 @@ public:
 
     ~XMLObject();
 
+    static XMLObject* from_string(const std::string& xml);
     std::string to_string() const;
     friend std::ostream& operator<<(std::ostream& s, const XMLObject& obj);
 };

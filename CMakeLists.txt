@@ -16,6 +16,7 @@ SET(CPP_FILES
 
         persons/i_elf.cpp
         persons/papa_xmas_elf.cpp
+        persons/santa_claus.cpp
 
         workplace/i_table.cpp
         workplace/i_conveyor_belt.cpp
@@ -28,3 +29,4 @@ SET(CPP_FILES
         )
 
 add_executable(tests tests.cpp ${CPP_FILES})
+add_executable(santa santa.cpp ${CPP_FILES})
